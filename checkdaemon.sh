@@ -11,6 +11,7 @@ swiftcash-cli getblockcount > ~/swiftnode/blockcount
 
 if [ "$previousBlock" == "$currentBlock" ]; then
   swiftcash-cli stop
-  sleep 10
-  swiftcashd
+  # we are relying on docker restart=always to kick off the daemon again
+#   sleep 10
+#   swiftcashd
 fi
