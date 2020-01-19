@@ -10,8 +10,9 @@ fi
 
 while true; do
  if [ -d ~/.swiftcash ]; then
-   printf "~/.swiftcash/ already exists! The installer will delete this folder. Continue anyway?(Y/n)"
-   read REPLY
+#    printf "~/.swiftcash/ already exists! The installer will delete this folder. Continue anyway?(Y/n)"
+#    read REPLY
+   REPLY=Y
    if [ ${REPLY} == "Y" ]; then
       pID=$(ps -ef | grep swiftcashd | awk '{print $2}')
       kill ${pID}
@@ -33,8 +34,9 @@ done
 # read IGNORE
 
 # Get a new privatekey by going to console >> debug and typing swiftnode genkey
-printf "SwiftNode GenKey: "
-read _nodePrivateKey
+# printf "SwiftNode GenKey: "
+# read _nodePrivateKey
+_nodePrivateKey=building
 
 # The RPC node will only accept connections from your localhost
 _rpcUserName=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 12 ; echo '')
@@ -121,15 +123,15 @@ chmod 0700 ./checkdaemon.sh
 chmod 0700 ./clearlog.sh
 
 # Firewall security measures
-apt install ufw -y
-ufw disable
-ufw allow 8544
-ufw allow 22/tcp
-ufw limit 22/tcp
-ufw logging on
-ufw default deny incoming
-ufw default allow outgoing
-ufw --force enable
+# apt install ufw -y
+# ufw disable
+# ufw allow 8544
+# ufw allow 22/tcp
+# ufw limit 22/tcp
+# ufw logging on
+# ufw default deny incoming
+# ufw default allow outgoing
+# ufw --force enable
 
 # Run cpulimit to keep the cpu usage below 50%
 cpulimit -P /usr/bin/swiftcashd -l 50 &
