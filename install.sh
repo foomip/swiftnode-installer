@@ -83,7 +83,7 @@ apt-get update -y
 apt-get install swiftcashd -y && swiftcashd &
 
 # Create a directory for swiftnode's cronjobs and the anti-ddos script
-rm -r swiftnode
+# rm -r swiftnode
 mkdir swiftnode
 
 # Change the directory to ~/swiftnode/
